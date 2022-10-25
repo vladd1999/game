@@ -1,25 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+import { FC } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import CreateGame from './components/creategame';
 
-function App() {
+import Home from './components/home';
+const App:FC = ()=> {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Routes>
+    <Route path="/" element={<Home/>}/>
+    <Route path="/create" element={<CreateGame/>}/>
+    <Route path="/join" /*element={<JoinGame/>}*//>
+   </Routes>
   );
 }
 
