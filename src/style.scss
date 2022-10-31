@@ -378,3 +378,69 @@ input[type="transparent"]
   .leaderboard {
     box-shadow: 0 0 40px -10px rgba(0, 0, 0, .4);
   }
+
+
+  @mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
+    -webkit-transition: $what $time $how;
+    -moz-transition:    $what $time $how;
+    -ms-transition:     $what $time $how;
+    -o-transition:      $what $time $how;
+    transition:         $what $time $how;
+  }
+  
+  
+  
+  
+  @mixin bp-mobileOnly {
+    @media only screen and (max-width: 480px) {
+      @content;
+    }
+  }
+  
+  @mixin bp-small {
+    @media only screen and (min-width: 481px) and (max-width: 640px) {
+      @content;
+    }
+  }
+  
+  @mixin bp-medium {
+    @media only screen and (min-width: 641px) and (max-width: 960px) {
+      @content;
+    }
+  }
+  
+  @mixin bp-large {
+    @media only screen and (min-width: 961px) and (max-width: 1200px) {
+      @content;
+    }
+  }
+  
+  @mixin bp-xl {
+    @media only screen and (min-width: 1201px) {
+      @content;
+    }
+  }
+
+
+  .card-container {
+    height: 282px;
+    width: 200px;
+    background-color: white;
+    background-size: cover;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+    text-align: center;
+    @include transition (all, 0.25s, ease);
+    @include bp-medium {
+      margin-left: -195px;
+    }
+    @include bp-small {
+      margin-left: -198px;    
+    }
+    @include bp-mobileOnly {
+      margin-left: -200px;    
+    }
+  }
