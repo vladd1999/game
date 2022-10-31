@@ -1,7 +1,8 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
 import { Container, HomeButtons, HomeContainer, SetNameWrapper, Title } from "../styles";
-
+import "../style.scss";
+import Button from "../components/button";
+import Input from "../components/input";
 
 const Home: FC = () => {
   return (
@@ -9,16 +10,16 @@ const Home: FC = () => {
       <Title>Title</Title>
       <HomeContainer>
         <SetNameWrapper>
-          <input placeholder="Enter your name..." />
+         <Input placeholder="text"/>
         </SetNameWrapper>
         <HomeButtons>
-          <Link to={"/create"}>Create</Link>
-          <Link to={"/join"}>Join</Link>
+          <Button str="Create"/>
+          <Button str="Join"/> 
         </HomeButtons>
       </HomeContainer>
     </Container>
   )
-}
+} 
 
 export default Home;
 

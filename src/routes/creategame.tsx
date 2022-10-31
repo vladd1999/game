@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, CreateButton, HomeContainer, Wrapper, Title } from "../styles";
+import { Container, HomeContainer, Wrapper, Title } from "../styles";
+import Button from "../components/button";
+import Input from "../components/input";
 
 const CreateGame : FC = () => {
     const navigate = useNavigate();
@@ -12,14 +14,15 @@ const CreateGame : FC = () => {
     <Container>
       <Title>Title</Title>
       <HomeContainer>
-          <button onClick={routeChange}>Go Back</button>
+          <Button str="Go Back"/>
           <Wrapper>
-            <input placeholder="Select the room password"/>
-            <input placeholder="Max players number"/>
-          <CreateButton>Create</CreateButton>
+            <Input placeholder="Select the room password"/>
+            <Input placeholder="Max players number"/>
           </Wrapper>
-          
-        
+          <Wrapper>
+
+          <Button str="Create game"/>
+          </Wrapper>
       </HomeContainer>
     </Container>
 );
