@@ -68,8 +68,8 @@ export const PlayerContainer = styled.div`
  align-content:center;
  justify-content:center; 
  text-align: center;
- top:38vh;
- right:21vw;
+ top:60vh;
+ right:38vw;
  width:18vw;
  height: 20vh;
  border: 0.3vh solid white;

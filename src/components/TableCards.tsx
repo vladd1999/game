@@ -7,7 +7,6 @@ import Card from "./CardComponent";
 const TableCards:FC = ()=>{
       const [cardsArray,setCardsArray] = useState(deckArray);
       const [cardPicked,setCardsPicked] = useState<Array<any>>([]);
-      const [front,setFront] = useState(true);
 
       const cardsPickedArray =cardPicked;
 
@@ -31,10 +30,10 @@ const TableCards:FC = ()=>{
      <button onClick={() => dealTableCards()}>Deal cards</button>
         <div style={{ display: "flex", justifyContent: "center", margin: "40px auto 0px 180px" }}>
     
-          {cardsPickedArray && cardsPickedArray.map((card: { suits: string; card: string; color: string; }, index: number) => {
+          {cardsPickedArray && cardsPickedArray.map((card: { suits: string; card: string; }, index: number) => {
             return (
               <div key={index}>
-                <Card suits={card.suits} card={card.card} color={card.color} front={true} id={0} />
+                <Card suits={card.suits} card={card.card} id={0} />
               </div>
             ); 
           })}

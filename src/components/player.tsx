@@ -17,12 +17,13 @@ const Player: FC<Props> = (props) => {
     </div>
         <span>{name}</span>
         <CardsContainer >
-        <Card suits={"Heart"} card={"5"} color={"red"} front={true} id={0} />
-            <Card suits={"Heart"} card={"8"} color={"red"} front={true} id={1} />
-            <Card suits={"Spade"} card={"3"} color={"black"} front={true} id={1} />
-            <Card suits={"Heart"} card={"2"} color={"red"} front={true} id={1} />
-            <Card suits={"Club"} card={"Q"} color={"red "} front={true} id={1} />
-            <Card suits={"Heart"} card={"9"} color={"red"} front={true} id={1} />
+        <Card suits={"Heart"} card={"5"}  id={0} />
+            <Card suits={"Heart"} card={"8"}  id={1} />
+            <Card suits={"Spade"} card={"3"} id={1} />
+            <Card suits={"Heart"} card={"2"} id={1} />
+            <Card suits={"Club"} card={"Q"} id={1} />
+            <Card id={2} />
+            <Card suits={"Diamond"} card={"9"}  id={1} />
         </CardsContainer>
             
     </PlayerContainer>

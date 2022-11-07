@@ -10,17 +10,15 @@ import spade from "../img/cardImg/spade.png";
 import "../style.scss";
 
 interface Props {
-  suits: string,
-  card: string,
-  front: boolean,
-  color: string,
-  id:number
+  suits?: string,
+  card?: string,
+  id?:number
 
 }
 
 const Card: FC<Props> = (props) => {
 
-  const { suits, card, front, color,id } = props;
+  const { suits, card,id } = props;
 
   const getCardSymbol = (suits: any) => {
     let symbol;
@@ -37,11 +35,27 @@ const Card: FC<Props> = (props) => {
         return symbol;
     };
   };
+  const getCardColor = (suits: any) => {
+    let color;
+    switch (suits) {
+      case "Diamond":
+        return color = "red";
+      case "Heart":
+        return color = "red";
+      case "Club":
+        return color = "black";
+        case "Spade":
+        return color = "black";
+      default:
+        return color;
+    };
+  };
 
-  if (front === true) {
+  if ( card && suits) {
     const cardSymbol = getCardSymbol(suits);
+    const cardColor = getCardColor(suits);
     return (
-      <div className={`card-container ${id!=0?"playercard":""}`} style={{ color: `${color}` }}>
+      <div className={`card-container ${id!==0?"playercard":""}`} style={{ color: cardColor }}>
         <div style={{ position: "absolute", top: 5, left: 5 }}>
           <div style={{ maxWidth: 13 }}>{card}</div>
           <img src={cardSymbol} alt="suit-symbol" style={{ maxWidth: 13 }} />
@@ -57,7 +71,7 @@ const Card: FC<Props> = (props) => {
     );
   } else {
     return (
-      <div className="card-container" style={{ backgroundImage: `url(${backCardImg})`, color: `${color}` }}></div>
+      <div className="card-container" style={{ backgroundImage: `url(${backCardImg})` }}></div>
     );
   };
 };

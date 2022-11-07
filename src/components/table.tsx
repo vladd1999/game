@@ -10,7 +10,7 @@ const Table: FC = () => {
       
       <Container>
         <TableContainer>
-
+          <TableCards/>
             <Player name={"Vlad"}/>
           </TableContainer>
         </Container>
