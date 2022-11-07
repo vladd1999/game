@@ -423,15 +423,15 @@ input[type="transparent"]
 
 
   .card-container {
-    height: 282px;
-    width: 200px;
+    height: 154px;
+    width: 110px;
     background-color: white;
     background-size: cover;
     position: relative;
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
     @include transition (all, 0.25s, ease);
     @include bp-medium {
@@ -443,4 +443,8 @@ input[type="transparent"]
     @include bp-mobileOnly {
       margin-left: -200px;    
     }
+    
+  }
+  .playercard{
+    margin-left:-80px;
   }

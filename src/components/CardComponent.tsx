@@ -13,13 +13,14 @@ interface Props {
   suits: string,
   card: string,
   front: boolean,
-  color: string
+  color: string,
+  id:number
 
 }
 
 const Card: FC<Props> = (props) => {
 
-  const { suits, card, front, color } = props;
+  const { suits, card, front, color,id } = props;
 
   const getCardSymbol = (suits: any) => {
     let symbol;
@@ -40,17 +41,17 @@ const Card: FC<Props> = (props) => {
   if (front === true) {
     const cardSymbol = getCardSymbol(suits);
     return (
-      <div className="card-container" style={{ color: `${color}` }}>
+      <div className={`card-container ${id!=0?"playercard":""}`} style={{ color: `${color}` }}>
         <div style={{ position: "absolute", top: 5, left: 5 }}>
-          <div style={{ maxWidth: 20 }}>{card}</div>
-          <img src={cardSymbol} alt="suit-symbol" style={{ maxWidth: 20 }} />
+          <div style={{ maxWidth: 13 }}>{card}</div>
+          <img src={cardSymbol} alt="suit-symbol" style={{ maxWidth: 13 }} />
         </div>
         <div>
-          <img src={cardSymbol} alt="suit-symbol" style={{ height: 40, position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+          <img src={cardSymbol} alt="suit-symbol" style={{ height: 25, position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
         </div>
         <div style={{ position: "absolute", bottom: 5, right: 5, transform: "rotate(-180deg)" }}>
-          <div style={{ maxWidth: 20 }}>{card}</div>
-          <img src={cardSymbol} alt="suit-symbol" style={{ maxWidth: 20 }} />
+          <div style={{ maxWidth: 25 }}>{card}</div>
+          <img src={cardSymbol} alt="suit-symbol" style={{ maxWidth: 13 }} />
         </div>
       </div>
     );

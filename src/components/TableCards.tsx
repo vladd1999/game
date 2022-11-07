@@ -20,10 +20,8 @@ const TableCards:FC = ()=>{
       };
 
       const dealTableCards = ()=>{
-        dealOneCard();
-        dealOneCard();
-        dealOneCard();
-        dealOneCard();
+        setCardsPicked([]);
+        while(cardsPickedArray.length<5)
         dealOneCard();
       }
 
@@ -36,7 +34,7 @@ const TableCards:FC = ()=>{
           {cardsPickedArray && cardsPickedArray.map((card: { suits: string; card: string; color: string; }, index: number) => {
             return (
               <div key={index}>
-                <Card suits={card.suits} card={card.card} color={card.color} front={true}/>
+                <Card suits={card.suits} card={card.card} color={card.color} front={true} id={0} />
               </div>
             ); 
           })}
