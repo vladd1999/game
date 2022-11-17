@@ -1,30 +1,34 @@
 package com.example.demo.model;
 
+import com.example.demo.utils.Rank;
+import com.example.demo.utils.Suit;
+
+
 public class Card {
-    private int id;
-    private String suits;
 
-    public void setId(int id) {
-        this.id = id;
+    private Suit suit;
+    private Rank rank;
+
+
+    public Card(Suit suit, Rank rank) {
+        this.suit = suit;
+        this.rank = rank;
     }
 
-    public void setSuits(String suits) {
-        this.suits = suits;
+    public Suit getSuit() {
+        return suit;
     }
 
-    public int getId() {
-        return id;
+    public void setSuit(Suit suit) {
+        this.suit = suit;
     }
 
-    public String getSuits() {
-        return suits;
+    public Rank getRank() {
+        return rank;
     }
 
-    public Card(String suits) {
-        this.suits = suits;
+    public void setRank(Rank rank) {
+        this.rank = rank;
     }
 
-    public Card(int id) {
-        this.id = id;
-    }
 }
