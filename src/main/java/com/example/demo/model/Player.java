@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Player {
 
     private String name;
-    private ArrayList<Card> hand;
+    private static ArrayList<Card> hand;
 
     public Player(String name) {
         this.name = name;
@@ -20,7 +20,7 @@ public class Player {
         this.name = name;
     }
 
-    public ArrayList<Card> getHand() {
+    public static ArrayList<Card> getHand() {
         return hand;
     }
 
@@ -34,7 +34,7 @@ public class Player {
 //    private int id;
 //    private String name;
 //    private ArrayList<Card> hand;
-//    private Integer cardNum;
+//    private int cardNum;
 //
 //    public Player(String name) {
 //        this.name = name;
@@ -49,11 +49,11 @@ public class Player {
 //        this.name = name;
 //    }
 //
-//    public Integer getCardNum() {
+//    public int getCardNum() {
 //        return cardNum;
 //    }
 //
-//    public void setCardNum(Integer cardNum) {
+//    public void setCardNum(int cardNum) {
 //        this.cardNum = cardNum;
 //    }
 //

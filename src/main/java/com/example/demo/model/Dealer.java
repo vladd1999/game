@@ -2,6 +2,7 @@ package com.example.demo.model;
 import com.example.demo.utils.Dealing;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dealer implements Dealing {
 
@@ -24,6 +25,7 @@ public class Dealer implements Dealing {
     }
 
     public Card drawCard(int index) {
+
         Card card = getCard(index);
         deck.remove(index);
         return card;
@@ -31,22 +33,21 @@ public class Dealer implements Dealing {
 
     public void dealCard(Player player, Card card) {
         player.getHand().add(card);
+
     }
 
-    public void deal(int cardsPerPlayer, ArrayList<Player> players) {
-        for (Player player : players) {
-            for (int i = 0; i < cardsPerPlayer; i++) {
+    public void deal(List<Player> players) {
+        players.forEach(player->{
+            for (int i = 0; i < player.getHand().size(); i++) {
                 Card card = drawCard(0);
                 dealCard(player, card);
-            }
-        }
+            }});
     }
 
-    public void dealTable(int numberOfCards, ArrayList<Card> table) {
-        for (int i = 0; i < numberOfCards; i++) {
+    public void dealTable(List<Card> table) {
+        for (int i = 0; i < 5; i++) {
             Card card = drawCard(0);
             table.add(card);
         }
     }
-
 }

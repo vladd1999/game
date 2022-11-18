@@ -3,12 +3,13 @@ import com.example.demo.model.Card;
 import com.example.demo.model.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public interface Dealing {
 
-    void deal(int cardsPerPlayer, ArrayList<Player> players);
+    void deal(List<Player> players);
 
-    void dealTable(int numberOfCards, ArrayList<Card> table);
+    void dealTable(List<Card> table);
 
 }
