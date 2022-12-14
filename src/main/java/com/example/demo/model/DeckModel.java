@@ -8,28 +8,28 @@ import java.util.Collections;
 import java.util.EnumSet;
 
 
-public class Deck {
+public class DeckModel {
 
-    private ArrayList<Card> deck;
+    private ArrayList<CardModel> deck;
 
-    public Deck() {
+    public DeckModel() {
         newDeck();
         shuffle();
     }
 
-    public ArrayList<Card> getDeck() {
+    public ArrayList<CardModel> getDeck() {
         return deck;
     }
 
-    public void add(Card card) {
-        deck.add(card);
+    public void add(CardModel cardModel) {
+        deck.add(cardModel);
     }
 
-    public Card get(int index) {
+    public CardModel get(int index) {
         return deck.get(index);
     }
 
-    public Card remove(int index) {
+    public CardModel remove(int index) {
         return deck.remove(index);
     }
 
@@ -42,9 +42,9 @@ public class Deck {
     }
 
     public void newDeck() {
-        Card card;
+        CardModel cardModel;
 
-        ArrayList<Card> deck = new ArrayList<Card>();
+        ArrayList<CardModel> deck = new ArrayList<CardModel>();
 
         ArrayList<Suit> suits =
                 new ArrayList<Suit>(EnumSet.allOf(Suit.class));
@@ -54,8 +54,8 @@ public class Deck {
 
         for(Suit suit : suits) {
             for (Rank value : cardTypes) {
-                card = new Card(suit, value);
-                deck.add(card);
+                cardModel = new CardModel(suit, value);
+                deck.add(cardModel);
             }
         }
 

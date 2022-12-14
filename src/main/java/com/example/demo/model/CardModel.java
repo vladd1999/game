@@ -4,13 +4,13 @@ import com.example.demo.utils.Rank;
 import com.example.demo.utils.Suit;
 
 
-public class Card {
+public class CardModel {
 
     private Suit suit;
     private Rank rank;
 
 
-    public Card(Suit suit, Rank rank) {
+    public CardModel(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
     }

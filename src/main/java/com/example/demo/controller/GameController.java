@@ -1,12 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Game;
-import com.example.demo.model.Information;
+import com.example.demo.model.*;
 import com.example.demo.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/game")
@@ -19,16 +16,38 @@ public class GameController {
     }
 
     @GetMapping(path = "/{id}")
-    public Game getGame(@PathVariable int id) {
+    public GameModel getGame(@PathVariable int id) {
         return gameService.getGame(id);
     }
 
-    @GetMapping(path = "/db/{id}")
-    public Game getGameByDB(@PathVariable int id) {
-        return gameService.getGameByDB(id);
+
+    @PostMapping(value = "set-accepted-move")
+    @ResponseBody
+    void setLastMove(@RequestBody NextAcceptedMoveParams nextAcceptedMoveParams) {
+        gameService.setMove(nextAcceptedMoveParams.gameId, nextAcceptedMoveParams.informationModel);
     }
-    @PostMapping(value = "next-accepted-move")
-    List<Information> nextAcceptedMove(int gameId){
-        return gameService.nextAcceptedMove(gameId);
+
+    @PostMapping(value = "is-lying")
+    @ResponseBody
+    boolean isLying(@RequestBody int gameId) {
+        return gameService.isLying(gameId);
+    }
+
+    @PostMapping(value = "/join")
+    @ResponseBody
+    PlayerSession joinGame(@RequestBody PlayerModel playerModel) {
+        return gameService.joinGame(playerModel.getName());
+    }
+
+    @PostMapping("/retrieve-state")
+    @ResponseBody
+    public GameStateModel retrieveState(@RequestBody PlayerSession playerSession) {
+        return gameService.getGameSession(playerSession);
+    }
+
+    public static class NextAcceptedMoveParams {
+        public int gameId;
+        public Information informationModel;
+
     }
 }

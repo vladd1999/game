@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import com.example.demo.utils.PokerHandPower;
 import com.example.demo.utils.Suit;
 
 import java.util.ArrayList;
@@ -27,10 +26,10 @@ public class PokerHandEvaluator {
         return new int[4];
     }
 
-    public boolean isDuplicateRank(Card card, ArrayList<Card> hand) {
+    public boolean isDuplicateRank(CardModel cardModel, ArrayList<CardModel> hand) {
         boolean isDuplicate = false;
-        for (Card handCard : hand) {
-            if (card.getRank().ordinal()==handCard.getRank().ordinal()) {
+        for (CardModel handCardModel : hand) {
+            if (cardModel.getRank().ordinal()== handCardModel.getRank().ordinal()) {
                 isDuplicate = true;
             }
             return isDuplicate;
@@ -40,26 +39,26 @@ public class PokerHandEvaluator {
 
     //hand evaluator methods
 
-    public Card highCard(ArrayList<Card> hand) {
+    public CardModel highCard(ArrayList<CardModel> hand) {
         int highestValue = 0;
-        Card highCard = null;
-        for (Card card : hand) {
-            int cardValue = card.getRank().ordinal();
+        CardModel highCardModel = null;
+        for (CardModel cardModel : hand) {
+            int cardValue = cardModel.getRank().ordinal();
             if (cardValue >= highestValue) {
                 highestValue = cardValue;
-                highCard = card;
+                highCardModel = cardModel;
             }
         }
-        return highCard;
+        return highCardModel;
     }
 
-    public ArrayList<ArrayList<Card>> howManyOfKind(int howMany, ArrayList<Card> hand) {
-        ArrayList<ArrayList<Card>> kindCounter = new ArrayList<>();
+    public ArrayList<ArrayList<CardModel>> howManyOfKind(int howMany, ArrayList<CardModel> hand) {
+        ArrayList<ArrayList<CardModel>> kindCounter = new ArrayList<>();
         int[] rankCounter = setUpRankCounter();
 
         //increment rankCounter to determine how many of each kind
-        for (Card card : hand) {
-            int keyOfCard = card.getRank().ordinal();
+        for (CardModel cardModel : hand) {
+            int keyOfCard = cardModel.getRank().ordinal();
             int currentValue = rankCounter[keyOfCard];
             rankCounter[keyOfCard] = currentValue + 1;
         }
@@ -70,10 +69,10 @@ public class PokerHandEvaluator {
             if (cardCount == howMany) {
 
                 //...and if there is, make an ArrayList of those cards
-                ArrayList<Card> kindArray = new ArrayList<>();
-                for (Card card : hand) {
-                    if ((card.getRank().ordinal()) == key) {
-                        kindArray.add(card);
+                ArrayList<CardModel> kindArray = new ArrayList<>();
+                for (CardModel cardModel : hand) {
+                    if ((cardModel.getRank().ordinal()) == key) {
+                        kindArray.add(cardModel);
                     }
                 }
                 //...and add it to the kindCounter ArrayList.
@@ -83,13 +82,13 @@ public class PokerHandEvaluator {
         return kindCounter;
     }
 
-    public ArrayList<Card> straight(ArrayList<Card> hand) {
-        ArrayList<Card> straight = new ArrayList<>();
+    public ArrayList<CardModel> straight(ArrayList<CardModel> hand) {
+        ArrayList<CardModel> straight = new ArrayList<>();
         int[] rankCounter = setUpRankCounter();
 
         //increment rankCounter to determine how many of each kind
-        for (Card card : hand) {
-            int keyOfCard = card.getRank().ordinal();
+        for (CardModel cardModel : hand) {
+            int keyOfCard = cardModel.getRank().ordinal();
             int currentValue = rankCounter[keyOfCard];
             rankCounter[keyOfCard] = (currentValue + 1);
         }
@@ -103,14 +102,14 @@ public class PokerHandEvaluator {
                     (rankCounter[i + 4] > 0)) {
 
                 //...and if there are, add each one into straight ArrayList
-                for (Card card : hand) {
-                    if (((card.getRank().ordinal() == i) ||
-                            (card.getRank().ordinal() == i + 1) ||
-                            (card.getRank().ordinal() == i + 2) ||
-                            (card.getRank().ordinal() == i + 3) ||
-                            (card.getRank().ordinal() == i + 4)) &&
-                            !(isDuplicateRank(card, straight))) {
-                        straight.add(card);
+                for (CardModel cardModel : hand) {
+                    if (((cardModel.getRank().ordinal() == i) ||
+                            (cardModel.getRank().ordinal() == i + 1) ||
+                            (cardModel.getRank().ordinal() == i + 2) ||
+                            (cardModel.getRank().ordinal() == i + 3) ||
+                            (cardModel.getRank().ordinal() == i + 4)) &&
+                            !(isDuplicateRank(cardModel, straight))) {
+                        straight.add(cardModel);
                     }
                 }
             }
@@ -122,27 +121,27 @@ public class PokerHandEvaluator {
                 (rankCounter[1] > 0) &&
                 (rankCounter[2] > 0) &&
                 (rankCounter[3] > 0)) {
-            for (Card card : hand) {
-                if (((card.getRank().ordinal() == 12) ||
-                        (card.getRank().ordinal() == 0) ||
-                        (card.getRank().ordinal() == 1) ||
-                        (card.getRank().ordinal() == 2) ||
-                        (card.getRank().ordinal() == 3)) &&
-                        !(isDuplicateRank(card, straight))) {
-                    straight.add(card);
+            for (CardModel cardModel : hand) {
+                if (((cardModel.getRank().ordinal() == 12) ||
+                        (cardModel.getRank().ordinal() == 0) ||
+                        (cardModel.getRank().ordinal() == 1) ||
+                        (cardModel.getRank().ordinal() == 2) ||
+                        (cardModel.getRank().ordinal() == 3)) &&
+                        !(isDuplicateRank(cardModel, straight))) {
+                    straight.add(cardModel);
                 }
             }
         }
         return straight;
     }
 
-    public ArrayList<Card> flush(ArrayList<Card> hand) {
-        ArrayList<Card> flush = new ArrayList<>();
+    public ArrayList<CardModel> flush(ArrayList<CardModel> hand) {
+        ArrayList<CardModel> flush = new ArrayList<>();
         int[] suitCounter = setUpSuitCounter();
 
         //increment suitCounter to determine how many of each suit
-        for (Card card : hand) {
-            Suit cardSuit = card.getSuit();
+        for (CardModel cardModel : hand) {
+            Suit cardSuit = cardModel.getSuit();
             for (Suit suit : Suit.values()) {
                 if (cardSuit.equals(suit)) {
                     int currentValue = suitCounter[suit.ordinal()];
@@ -156,10 +155,10 @@ public class PokerHandEvaluator {
             if (suitCounter[suit.ordinal()] == 5) {
 
                 //...and if there is, add those cards to the flush ArrayList
-                for (Card card : hand) {
-                    Suit cardSuit = card.getSuit();
+                for (CardModel cardModel : hand) {
+                    Suit cardSuit = cardModel.getSuit();
                     if (cardSuit.equals(suit)) {
-                        flush.add(card);
+                        flush.add(cardModel);
                     }
                 }
             }
@@ -167,21 +166,21 @@ public class PokerHandEvaluator {
         return flush;
     }
 
-    public ArrayList<Card> fullHouse(ArrayList<Card> hand) {
-        ArrayList<Card> fullHouse = new ArrayList<>();
+    public ArrayList<CardModel> fullHouse(ArrayList<CardModel> hand) {
+        ArrayList<CardModel> fullHouse = new ArrayList<>();
 
         //set up a copy of hand ArrayList, so that elements can be removed w/o removing from hand
-        ArrayList<Card> workingHand = new ArrayList<>();
+        ArrayList<CardModel> workingHand = new ArrayList<>();
         workingHand.addAll(hand);
 
         //gets ArrayList of three-of-a-kind combinations
-        ArrayList<ArrayList<Card>> threeOfAKinds = howManyOfKind(3, workingHand);
-        for (ArrayList<Card> threeOfAKind : threeOfAKinds) {
+        ArrayList<ArrayList<CardModel>> threeOfAKinds = howManyOfKind(3, workingHand);
+        for (ArrayList<CardModel> threeOfAKind : threeOfAKinds) {
             if (!(threeOfAKind.isEmpty())) {
                 //if there is a three-of-a-kind, remove it from workingHand
                 workingHand.removeAll(threeOfAKind);
                 //and check workingHand for two-of-a-kinds
-                ArrayList<ArrayList<Card>> twoOfAKinds = howManyOfKind(2, workingHand);
+                ArrayList<ArrayList<CardModel>> twoOfAKinds = howManyOfKind(2, workingHand);
                 //if there is a two-of-a-kind
                 if (!(twoOfAKinds.isEmpty())) {
                     //add two-of-a-kind to fullHouse, along with three-of-a-kind, making full house
@@ -193,10 +192,10 @@ public class PokerHandEvaluator {
         return fullHouse;
     }
 
-    public ArrayList<Card> straightFlush(ArrayList<Card> hand) {
-        ArrayList<Card> straightFlush = new ArrayList<>();
+    public ArrayList<CardModel> straightFlush(ArrayList<CardModel> hand) {
+        ArrayList<CardModel> straightFlush = new ArrayList<>();
 
-        ArrayList<Card> flush = flush(hand);
+        ArrayList<CardModel> flush = flush(hand);
         //exit early if no flush...
         if (flush.isEmpty()) return straightFlush;
         //else, check if flush is straight
@@ -205,16 +204,16 @@ public class PokerHandEvaluator {
         return straightFlush;
     }
 
-    public ArrayList<Card> royalFlush(ArrayList<Card> hand) {
-        ArrayList<Card> royalFlush = new ArrayList<>();
+    public ArrayList<CardModel> royalFlush(ArrayList<CardModel> hand) {
+        ArrayList<CardModel> royalFlush = new ArrayList<>();
 
         //check if we have a flush
         if (flush(hand).isEmpty()) return royalFlush;
 
         //...increment royalRankCounter to check how many of each rank
         int[] royalRankCounter = setUpRoyalRankCounter();
-        for (Card card : hand) {
-            int cardRank = card.getRank().ordinal();
+        for (CardModel cardModel : hand) {
+            int cardRank = cardModel.getRank().ordinal();
             for (int rank : royalRankCounter) {
                 if (cardRank==rank) {
                     int currentValue = royalRankCounter[rank];
@@ -238,43 +237,43 @@ public class PokerHandEvaluator {
 
     //boolean methods
 
-    public boolean isTwoOfAKind(ArrayList<Card> hand) {
-        ArrayList<ArrayList<Card>> result = howManyOfKind(2, hand);
+    public boolean isTwoOfAKind(ArrayList<CardModel> hand) {
+        ArrayList<ArrayList<CardModel>> result = howManyOfKind(2, hand);
         return (result.size() == 1);
     }
 
-    public boolean isTwoPair(ArrayList<Card> hand) {
-        ArrayList<ArrayList<Card>> result = howManyOfKind(2, hand);
+    public boolean isTwoPair(ArrayList<CardModel> hand) {
+        ArrayList<ArrayList<CardModel>> result = howManyOfKind(2, hand);
         return (result.size() == 2);
     }
 
-    public boolean isThreeOfAKind(ArrayList<Card> hand) {
-        ArrayList<ArrayList<Card>> result = howManyOfKind(3, hand);
+    public boolean isThreeOfAKind(ArrayList<CardModel> hand) {
+        ArrayList<ArrayList<CardModel>> result = howManyOfKind(3, hand);
         return (result.size() == 1);
     }
 
-    public boolean isStraight(ArrayList<Card> hand) {
+    public boolean isStraight(ArrayList<CardModel> hand) {
         return !(straight(hand).isEmpty());
     }
 
-    public boolean isFlush(ArrayList<Card> hand) {
+    public boolean isFlush(ArrayList<CardModel> hand) {
         return !(flush(hand).isEmpty());
     }
 
-    public boolean isFullHouse(ArrayList<Card> hand) {
+    public boolean isFullHouse(ArrayList<CardModel> hand) {
         return !(fullHouse(hand).isEmpty());
     }
 
-    public boolean isFourOfAKind(ArrayList<Card> hand) {
-        ArrayList<ArrayList<Card>> result = howManyOfKind(4, hand);
+    public boolean isFourOfAKind(ArrayList<CardModel> hand) {
+        ArrayList<ArrayList<CardModel>> result = howManyOfKind(4, hand);
         return (result.size() == 1);
     }
 
-    public boolean isStraightFlush(ArrayList<Card> hand) {
+    public boolean isStraightFlush(ArrayList<CardModel> hand) {
         return !(straightFlush(hand).isEmpty());
     }
 
-    public boolean isRoyalFlush(ArrayList<Card> hand) {
+    public boolean isRoyalFlush(ArrayList<CardModel> hand) {
         return !(royalFlush(hand).isEmpty());
     }
 

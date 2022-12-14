@@ -9,5 +9,9 @@ public enum PokerHandPower {
     FULLHOUSE,
     FOUROFAKIND,
     STRAIGHTFLUSH,
-    ROYALFLUSH
+    ROYALFLUSH;
+
+    public int getOrdinal() {
+        return this.ordinal();
+    }
 }
